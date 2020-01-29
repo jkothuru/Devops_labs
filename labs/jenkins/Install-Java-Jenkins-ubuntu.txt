@@ -1,6 +1,6 @@
 Install JAVA
  
-	sudo apt install openjdk-8-jdk
+	sudo apt install openjdk-8-jdk -y
 
 Install Jenkins
 
