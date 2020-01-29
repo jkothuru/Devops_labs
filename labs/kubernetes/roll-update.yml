@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: hello-deploy
+  minReadySeconds: 20 # wait for 10 sec before pod is ready going to next
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1  # take down 1 pod at a time
+      maxSurge: 1        # bring one at a time
+  template:
+    metadata:
+      labels:
+        app: hello-deploy
+    spec:
+      containers:
+      - name: firstpod
+        image: tomcat:9.0.26-jdk8-openjdk-slim
+        ports:
+        - containerPort: 8080
